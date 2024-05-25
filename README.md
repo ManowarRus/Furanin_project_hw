@@ -8,7 +8,7 @@
 
 1. Клонируйте репозиторий:
 ```
-git clone https://github.com/username/project-x.git
+git@github.com:ManowarRus/Furanin_project_hw.git
 ```
 ## Использование:
 
