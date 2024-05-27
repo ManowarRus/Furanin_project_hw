@@ -1,6 +1,6 @@
 import pytest
 
-from src.masks import get_mask_cards, get_mask_bank_account
+from src.masks import get_mask_bank_account, get_mask_cards
 
 
 @pytest.mark.parametrize(
@@ -12,13 +12,13 @@ from src.masks import get_mask_cards, get_mask_bank_account
         ("8990922113665229", "8990 92** **** 5229"),
         ("5999414228426353", "5999 41** **** 6353"),
     ],
-
 )
 def test_mask_card(numbers, result1):
     assert get_mask_cards(numbers) == result1
 
 
-@pytest.mark.parametrize("numbers, result",
+@pytest.mark.parametrize(
+    "numbers, result",
     [
         ("73654108430135874305", "**4305"),
         ("64686473678894779589", "**9589"),

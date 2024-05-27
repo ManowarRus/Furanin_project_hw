@@ -2,7 +2,7 @@
 name = "furanin-dz-5"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Vladimir Furanin <7533248@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
