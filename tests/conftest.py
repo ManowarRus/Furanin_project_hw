@@ -2,7 +2,7 @@ import pytest
 
 
 @pytest.fixture
-def number_string():
+def strings_number():
     return [
         "Maestro 1596 83** **** 5199",
         "**9589",
@@ -16,7 +16,7 @@ def number_string():
 
 
 @pytest.fixture
-def old_data():
+def data_string():
     return [
         "11.07.2018",
         "03.07.2019",
@@ -25,7 +25,7 @@ def old_data():
 
 
 @pytest.fixture
-def card_number():
+def numbers():
     return [
         "7000 79** **** 6361",
         "7158 30** **** 6758",
@@ -36,7 +36,7 @@ def card_number():
 
 
 @pytest.fixture
-def acc_number():
+def numbers():
     return ["**4305", "**9589", "**5560", "**4305"]
 
 
