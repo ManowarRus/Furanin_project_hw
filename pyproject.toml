@@ -30,6 +30,7 @@ exclude = 'venv'
 line-length = 119
 exclude = '.venv'
 
+
 [tool.isort]
 line_length = 119
 

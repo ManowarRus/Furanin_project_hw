@@ -10,8 +10,9 @@ def test_list_dictionary(list_dict):
     ]
 
 
-def test_list_dictionary():
+def test_list_dictionary_none():
     assert list_dictionary([]) == []
+
 
 
 @pytest.mark.parametrize(
