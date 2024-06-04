@@ -99,15 +99,26 @@ for card_number in card_number_generator(1, 5):
 
 @log(filename="mylog.txt")
 def my_function(x, y):
+    """Функция вызова декоратора с файлом сохранения mylog.txt"""
     return x + y
 
 
 my_function(1, 2)
 
 
+@log()
+def my_function_1(x, y):
+    """Функция вызова декоратора без файла сохранения и вывод в консоль."""
+    return x + y
+
+
+my_function_1(1, 2)
+
+
 @log(filename="mylog.txt")
 def my_function_error(x, y):
+    """Функция вызова декоратора с ошибкой и сохранение вывода в файл mylog.txt"""
     return x / y
 
 
-my_function_error(3, 3)
+my_function_error(3, 0)
