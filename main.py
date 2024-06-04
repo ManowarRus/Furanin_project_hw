@@ -110,4 +110,4 @@ def my_function_error(x, y):
     return x / y
 
 
-my_function_error(3, 0)
+my_function_error(3, 3)
