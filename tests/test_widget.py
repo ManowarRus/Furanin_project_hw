@@ -28,6 +28,5 @@ def test_get_masks_bank_accounts_cards(strings_number, result):
         ("2018-06-30T02:08:58.4255722", "30-06-2018"),
     ],
 )
-
 def test_convert_date(data_string, result):
     assert convert_date(data_string) == result

@@ -2,7 +2,6 @@ from src.processing import list_dictionary, list_sorted_date
 from src.widget import convert_date, get_masks_bank_accounts_cards
 from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 from src.decorators import log
-from typing import Any, Callable, Optional
 
 
 card_check_number = str(input("Введите номер карты или счет: "))
