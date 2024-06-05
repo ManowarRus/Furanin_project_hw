@@ -4,7 +4,7 @@ from src.masks import get_mask_bank_account, get_mask_cards
 def get_masks_bank_accounts_cards(strings_number: str) -> str:
     """Функция приинимает на вход строку с информацией — тип карты/счета и номер карты/счета и
     возвращает исходную строку с замаскированным номером карты/счета."""
-    if "Visa" in strings_number or "Maestro" in strings_number or "МИР" in strings_number:
+    if "Visa" in strings_number or "Maestro" in strings_number or "MasterCard" in strings_number:
         word_list = strings_number.split()
         num_list = []
         symbol_list = []

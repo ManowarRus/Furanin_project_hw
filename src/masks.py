@@ -12,8 +12,8 @@ def get_mask_cards(numbers: str) -> str:
     return result1
 
 
-def get_mask_bank_account(numbers: str) -> str:
+def get_mask_bank_account(numbers1: str) -> str:
     """Функция принимает на вход номер счета и возвращает его маску.
     Номер счета замаскирован и отображается в формате **XXXX"""
-    result = "**" + numbers[-4:]
+    result = "**" + numbers1[-4:]
     return result
