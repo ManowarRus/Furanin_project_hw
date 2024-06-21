@@ -1,0 +1,20 @@
+import json
+import os
+from src.external_api import currency_conversion
+
+
+def transaction_amount(file_path: str) -> float:
+    """Функция, которая выводит сумму транзакции"""
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            repos = json.load(file)
+        if isinstance(repos, list):
+            return repos
+        else:
+            return []
+    except Exception as e:
+        print(f"Ошибка {e}")
+        return []
+
+
+51.30
