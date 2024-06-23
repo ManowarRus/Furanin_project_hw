@@ -1,6 +1,7 @@
 import logging
 import os
 
+
 def setup_logger(file_name, log_file):
     """Функция настройка логов для модулей"""
 

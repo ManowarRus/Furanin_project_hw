@@ -1,9 +1,11 @@
 import os
+
 from src.setup_logger import setup_logger
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path_1 = os.path.join(current_dir, "../logs", "masks.log")
 logger = setup_logger("masks", file_path_1)
+
 
 def get_mask_cards(numbers: str) -> str:
     """Функция принимает на вход номер карты и возвращает ее маску.
