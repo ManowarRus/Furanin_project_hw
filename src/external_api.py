@@ -16,9 +16,11 @@ def currency_conversion(transaction: dict) -> float:
 
     if currency == "RUB":
         return amount
-    elif currency in ["USD","EUR"]:
+    elif currency in ["USD", "EUR"]:
         try:
-            response = requests.get(API_URL.format(to="RUB", from_=currency, amount=amount), headers={"apikey": API_KEY})
+            response = requests.get(
+                API_URL.format(to="RUB", from_=currency, amount=amount), headers={"apikey": API_KEY}
+            )
             if response.status_code == 200:
                 data = response.json()
                 return data["result"]

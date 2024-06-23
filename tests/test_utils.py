@@ -1,16 +1,11 @@
-import builtins
 import unittest
-
-import pytest
 
 from unittest.mock import patch, mock_open, MagicMock
 
-import requests
-
-from src.external_api import currency_conversion
 from src.utils import transaction_amount
 
 import json
+
 
 class TestGetTransaction(unittest.TestCase):
 
@@ -26,3 +21,23 @@ class TestGetTransaction(unittest.TestCase):
         result = transaction_amount("fake_path.json")
         self.assertEqual(result, [])
         mock_file.assert_called_once_with("fake_path.json", "r", encoding="utf-8")
+
+    @patch("builtins.open", new_callable=mock_open, read_data="")
+    def test_transaction_amount_empty_file(self, mock_file: MagicMock) -> None:
+        result = transaction_amount("fake_path.json")
+        self.assertEqual(result, [])
+        mock_file.assert_called_once_with("fake_path.json", "r", encoding="utf-8")
+
+    @patch("builtins.open", side_effect=FileNotFoundError)
+    def test_transaction_amount_file_not_found(self, mock_file: MagicMock) -> None:
+        result = transaction_amount("fake_path.json")
+        self.assertEqual(result, [])
+        mock_file.assert_called_once_with("fake_path.json", "r", encoding="utf-8")
+
+    @patch("builtins.open", new_callable=mock_open, read_data='{"transaction": "data"}')
+    @patch("json.load", side_effect=json.JSONDecodeError("Expecting value", "", 0))
+    def test_transaction_amount_json_decode_error(self, mock_json_load: MagicMock, mock_file: MagicMock) -> None:
+        result = transaction_amount("fake_path.json")
+        self.assertEqual(result, [])
+        mock_file.assert_called_once_with("fake_path.json", "r", encoding="utf-8")
+        mock_json_load.assert_called_once()
