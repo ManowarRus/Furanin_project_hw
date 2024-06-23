@@ -5,8 +5,8 @@ import requests
 
 load_dotenv()
 
-API_KEY = os.detenv("API_KEY")
-API_URL = "https://api.apilayer.com/exchangerates_data/convert?to={'RUB'}&from_={currency}&amount={amount}"
+API_KEY = os.getenv("API_KEY")
+API_URL = "https://api.apilayer.com/exchangerates_data/convert?to={to}&from={from_}&amount={amount}"
 
 
 def currency_conversion(transaction: dict) -> float:

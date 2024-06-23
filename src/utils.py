@@ -15,6 +15,3 @@ def transaction_amount(file_path: str) -> float:
     except Exception as e:
         print(f"Ошибка {e}")
         return []
-
-
-51.30
