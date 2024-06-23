@@ -1,9 +1,7 @@
 import json
-import os
-from src.external_api import currency_conversion
 
 
-def transaction_amount(file_path: str) -> float:
+def transaction_amount(file_path: str) -> list:
     """Функция, которая выводит сумму транзакции"""
     try:
         with open(file_path, "r", encoding="utf-8") as file:

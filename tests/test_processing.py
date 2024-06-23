@@ -10,7 +10,7 @@ def test_list_dictionary(list_dict):
     ]
 
 
-def test_list_dictionary_none():
+def test_list_dictionary_none() -> None:
     assert list_dictionary([]) == []
 
 
