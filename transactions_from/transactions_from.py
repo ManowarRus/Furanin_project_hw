@@ -3,7 +3,6 @@ import pandas as pd
 
 def read_csv(file_path: str) -> list:
     """Читает CSV-файл и возвращает список транзакций в виде словарей."""
-    # Чтение данных из CSV файла в DataFrame
     df = pd.read_csv(file_path)
 
     # Преобразование DataFrame в список словарей
@@ -14,14 +13,12 @@ def read_csv(file_path: str) -> list:
 
 def read_xlsx(file_path: str) -> list:
     """Читает XLSX-файл и возвращает список транзакций в виде словарей."""
-    # Чтение данных из XLSX файла в DataFrame
     df = pd.read_excel(file_path)
 
     # Преобразование DataFrame в список словарей
     transactions = df.to_dict(orient="records")
 
     return transactions
-
 
 
 if __name__ == "__main__":
