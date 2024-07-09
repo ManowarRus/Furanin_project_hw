@@ -1,34 +1,45 @@
-import os
+import logging
+from typing import Union
 
-from src.setup_logger import setup_logger
+from config import MASKS_LOGS
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-file_path_1 = os.path.join(current_dir, "../logs", "masks.log")
-logger = setup_logger("masks", file_path_1)
+# Проводим настройку логгеров для логирования в файл (уровень DEBUG) и в консоль (уровень ERROR)
+logger = logging.getLogger(__file__)
+logger.setLevel(logging.DEBUG)
 
+file_handler = logging.FileHandler(MASKS_LOGS, mode="w")
+file_formatter = logging.Formatter(
+    "%(asctime)s - %(filename)s - %(funcName)s - %(levelname)s - %(message)s",
+)
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
 
-def get_mask_cards(numbers: str) -> str:
-    """Функция принимает на вход номер карты и возвращает ее маску.
-    Номер карты замаскирован и отображается в формате XXXX XX** **** XXXX"""
-
-    logger.info(f"Задаём формат маски для номера банковской карты {numbers}")
-
-    result = ""
-    number_list = list(numbers)
-    for i, num in enumerate(number_list):
-        if i == 3 or i == 7 or i == 11:
-            result += num + " "
-        else:
-            result += num
-    result1 = result[0:7] + "** ****" + result[14:]
-    return result1
+# Определяем логгеры для каждой из представленных функций
+card_logger = logging.getLogger("app.credit_card")
+bank_logger = logging.getLogger("app.bank_account")
 
 
-def get_mask_bank_account(numbers1: str) -> str:
-    """Функция принимает на вход номер счета и возвращает его маску.
-    Номер счета замаскирован и отображается в формате **XXXX"""
+def credit_card_masking(number: Union[int, str]) -> str:
+    """Функция возвращает маску номера кредитной карты по шаблону - 'ХХХХ ХХ** **** ХХХХ'"""
+    # Проверяем на корректность введённый номер карты. Возвращаем предупреждение при непрохождении проверки.
+    # В противном случае возвращаем маску.
+    logger.info("Программа  начала работу.")
+    if str(number).isdigit() and len(str(number)) == 16:
+        logger.info("Программа успешно завершила свою работу.")
+        return f"{str(number)[0:4]} {str(number)[4:6]}** **** {str(number)[-4:]}"
+    else:
+        logger.error("Введён не корректный номер кредитной карты!")
+        return "Введён не корректный номер кредитной карты! Проверьте!"
 
-    logger.info(f"Проверяем правильность написания {numbers1}")
 
-    result = "**" + numbers1[-4:]
-    return result
+def bank_account_masking(number: Union[int, str]) -> str:
+    """Функция возвращает маску номера банковского счёта по шаблону - '**ХХХХ'"""
+    # Проверяем на корректность введённый номер счёта. Возвращаем предупреждение при непрохождении проверки.
+    # В противном случае возвращаем маску.
+    logger.info("Программа начала работу.")
+    if str(number).isdigit() and len(str(number)) == 20:
+        logger.info("Программа успешно завершила свою работу.")
+        return f"**{str(number)[-4:]}"
+    else:
+        logger.error("Введён не корректный номер банковского счёта!")
+        return "Введён не корректный номер банковского счёта! Проверьте!"

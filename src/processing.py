@@ -1,14 +1,15 @@
-def list_dictionary(list_dict: list, state: str = "EXECUTED") -> list:
-    """Функцию, которая принимает на вход список словарей
-    и значение для ключа state"""
-    filtred_list = []
-    for ld in list_dict:
-        if ld.get("state") == state:
-            filtred_list.append(ld)
-    return filtred_list
+from datetime import datetime
+from typing import List
 
 
-def list_sorted_date(list_dict: list, direction: bool = True) -> list:
-    """Функция сортирует словари по дате"""
-    sorted_list = sorted(list_dict, key=lambda x: x["date"], reverse=direction)
-    return sorted_list
+def state_func(dict_list: List[dict], state: str = "EXECUTED") -> List[dict]:
+    """Функция принимает список словарей и занчение ключа 'state' по-умолчанию равного 'EXECUTED'.
+    Вщзвращает список словарей с ключом 'state' равным заданному значению"""
+    return [dictionary for dictionary in dict_list if dictionary.get("state") == state]
+
+
+def date_sort_func(dict_list: List[dict], direction: bool = True) -> List[dict]:
+    """Функция принимает список словарей и необязательное значение направления сортировки - возрастание либо убывание.
+    По-умолчанию необязательный параметр равен 'False' - убывание.
+    Возвращает отсортированный  согласно направлению сортировки список словарей."""
+    return sorted(dict_list, key=lambda x: datetime.fromisoformat(x["date"]), reverse=direction)
